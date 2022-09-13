@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.king.information.main.spider.weiboSpider.mapper.WeiboUserMapper">
+  <resultMap id="BaseResultMap" type="com.king.information.main.spider.weiboSpider.entry.WeiboUser">
+    <id column="_id" jdbcType="VARCHAR" property="id" />
+    <result column="URL" jdbcType="VARCHAR" property="url" />
+    <result column="Summary" jdbcType="VARCHAR" property="summary" />
+    <result column="Signature" jdbcType="VARCHAR" property="signature" />
+    <result column="Province" jdbcType="VARCHAR" property="province" />
+    <result column="Num_Tweets" jdbcType="VARCHAR" property="numTweets" />
+    <result column="Num_Follows" jdbcType="VARCHAR" property="numFollows" />
+    <result column="Num_Fans" jdbcType="VARCHAR" property="numFans" />
+    <result column="NickName" jdbcType="VARCHAR" property="nickname" />
+    <result column="Gender" jdbcType="VARCHAR" property="gender" />
+    <result column="Birthday" jdbcType="VARCHAR" property="birthday" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    _id, URL, Summary, Signature, Province, Num_Tweets, Num_Follows, Num_Fans, NickName, 
+    Gender, Birthday
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from weibouser
+    where _id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from weibouser
+    where _id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.king.information.main.spider.weiboSpider.entry.WeiboUser">
+    insert into weibouser (_id, URL, Summary, 
+      Signature, Province, Num_Tweets, 
+      Num_Follows, Num_Fans, NickName, 
+      Gender, Birthday)
+    values (#{id,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, 
+      #{signature,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{numTweets,jdbcType=VARCHAR}, 
+      #{numFollows,jdbcType=VARCHAR}, #{numFans,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.king.information.main.spider.weiboSpider.entry.WeiboUser">
+    insert into weibouser
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        _id,
+      </if>
+      <if test="url != null">
+        URL,
+      </if>
+      <if test="summary != null">
+        Summary,
+      </if>
+      <if test="signature != null">
+        Signature,
+      </if>
+      <if test="province != null">
+        Province,
+      </if>
+      <if test="numTweets != null">
+        Num_Tweets,
+      </if>
+      <if test="numFollows != null">
+        Num_Follows,
+      </if>
+      <if test="numFans != null">
+        Num_Fans,
+      </if>
+      <if test="nickname != null">
+        NickName,
+      </if>
+      <if test="gender != null">
+        Gender,
+      </if>
+      <if test="birthday != null">
+        Birthday,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null">
+        #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="numTweets != null">
+        #{numTweets,jdbcType=VARCHAR},
+      </if>
+      <if test="numFollows != null">
+        #{numFollows,jdbcType=VARCHAR},
+      </if>
+      <if test="numFans != null">
+        #{numFans,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.king.information.main.spider.weiboSpider.entry.WeiboUser">
+    update weibouser
+    <set>
+      <if test="url != null">
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        Summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null">
+        Signature = #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        Province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="numTweets != null">
+        Num_Tweets = #{numTweets,jdbcType=VARCHAR},
+      </if>
+      <if test="numFollows != null">
+        Num_Follows = #{numFollows,jdbcType=VARCHAR},
+      </if>
+      <if test="numFans != null">
+        Num_Fans = #{numFans,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        NickName = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        Gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        Birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where _id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.king.information.main.spider.weiboSpider.entry.WeiboUser">
+    update weibouser
+    set URL = #{url,jdbcType=VARCHAR},
+      Summary = #{summary,jdbcType=VARCHAR},
+      Signature = #{signature,jdbcType=VARCHAR},
+      Province = #{province,jdbcType=VARCHAR},
+      Num_Tweets = #{numTweets,jdbcType=VARCHAR},
+      Num_Follows = #{numFollows,jdbcType=VARCHAR},
+      Num_Fans = #{numFans,jdbcType=VARCHAR},
+      NickName = #{nickname,jdbcType=VARCHAR},
+      Gender = #{gender,jdbcType=VARCHAR},
+      Birthday = #{birthday,jdbcType=VARCHAR}
+    where _id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

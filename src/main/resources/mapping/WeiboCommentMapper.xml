@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.king.information.main.spider.weiboSpider.mapper.WeiboCommentMapper">
+  <resultMap id="BaseResultMap" type="com.king.information.main.spider.weiboSpider.entry.WeiboComment">
+    <id column="_id" jdbcType="VARCHAR" property="id" />
+    <result column="Form" jdbcType="VARCHAR" property="form" />
+    <result column="Time" jdbcType="VARCHAR" property="time" />
+    <result column="Like" jdbcType="VARCHAR" property="like" />
+    <result column="Commit" jdbcType="VARCHAR" property="commit" />
+    <result column="WeiboId" jdbcType="VARCHAR" property="weiboid" />
+    <result column="userId" jdbcType="VARCHAR" property="userid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    _id, Form, Time, Like, Commit, WeiboId, userId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from weibocomment
+    where _id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from weibocomment
+    where _id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.king.information.main.spider.weiboSpider.entry.WeiboComment">
+    insert into weibocomment (_id, Form, Time, 
+      Like, Commit, WeiboId, 
+      userId)
+    values (#{id,jdbcType=VARCHAR}, #{form,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, 
+      #{like,jdbcType=VARCHAR}, #{commit,jdbcType=VARCHAR}, #{weiboid,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.king.information.main.spider.weiboSpider.entry.WeiboComment">
+    insert into weibocomment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        _id,
+      </if>
+      <if test="form != null">
+        Form,
+      </if>
+      <if test="time != null">
+        Time,
+      </if>
+      <if test="like != null">
+        Like,
+      </if>
+      <if test="commit != null">
+        Commit,
+      </if>
+      <if test="weiboid != null">
+        WeiboId,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="form != null">
+        #{form,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="like != null">
+        #{like,jdbcType=VARCHAR},
+      </if>
+      <if test="commit != null">
+        #{commit,jdbcType=VARCHAR},
+      </if>
+      <if test="weiboid != null">
+        #{weiboid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.king.information.main.spider.weiboSpider.entry.WeiboComment">
+    update weibocomment
+    <set>
+      <if test="form != null">
+        Form = #{form,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        Time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="like != null">
+        Like = #{like,jdbcType=VARCHAR},
+      </if>
+      <if test="commit != null">
+        Commit = #{commit,jdbcType=VARCHAR},
+      </if>
+      <if test="weiboid != null">
+        WeiboId = #{weiboid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where _id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.king.information.main.spider.weiboSpider.entry.WeiboComment">
+    update weibocomment
+    set Form = #{form,jdbcType=VARCHAR},
+      Time = #{time,jdbcType=VARCHAR},
+      Like = #{like,jdbcType=VARCHAR},
+      Commit = #{commit,jdbcType=VARCHAR},
+      WeiboId = #{weiboid,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=VARCHAR}
+    where _id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.king.information.main.spider.weiboSpider.mapper.WeiboMessageMapper">
+  <resultMap id="BaseResultMap" type="com.king.information.main.spider.weiboSpider.entry.WeiboMessage">
+    <id column="_id" jdbcType="VARCHAR" property="id" />
+    <result column="userId" jdbcType="VARCHAR" property="userid" />
+    <result column="Url" jdbcType="VARCHAR" property="url" />
+    <result column="Transfer" jdbcType="VARCHAR" property="transfer" />
+    <result column="Tools" jdbcType="VARCHAR" property="tools" />
+    <result column="PubTime" jdbcType="VARCHAR" property="pubtime" />
+    <result column="Like" jdbcType="VARCHAR" property="like" />
+    <result column="Content" jdbcType="VARCHAR" property="content" />
+    <result column="Comment" jdbcType="VARCHAR" property="comment" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    _id, userId, Url, Transfer, Tools, PubTime, Like, Content, Comment
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from weibomessage
+    where _id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from weibomessage
+    where _id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.king.information.main.spider.weiboSpider.entry.WeiboMessage">
+    insert into weibomessage (_id, userId, Url, 
+      Transfer, Tools, PubTime, 
+      `Like`, Content, Comment
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{transfer,jdbcType=VARCHAR}, #{tools,jdbcType=VARCHAR}, #{pubtime,jdbcType=VARCHAR}, 
+      #{like,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.king.information.main.spider.weiboSpider.entry.WeiboMessage">
+    insert into weibomessage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        _id,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="url != null">
+        Url,
+      </if>
+      <if test="transfer != null">
+        Transfer,
+      </if>
+      <if test="tools != null">
+        Tools,
+      </if>
+      <if test="pubtime != null">
+        PubTime,
+      </if>
+      <if test="like != null">
+        Like,
+      </if>
+      <if test="content != null">
+        Content,
+      </if>
+      <if test="comment != null">
+        Comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="transfer != null">
+        #{transfer,jdbcType=VARCHAR},
+      </if>
+      <if test="tools != null">
+        #{tools,jdbcType=VARCHAR},
+      </if>
+      <if test="pubtime != null">
+        #{pubtime,jdbcType=VARCHAR},
+      </if>
+      <if test="like != null">
+        #{like,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.king.information.main.spider.weiboSpider.entry.WeiboMessage">
+    update weibomessage
+    <set>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        Url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="transfer != null">
+        Transfer = #{transfer,jdbcType=VARCHAR},
+      </if>
+      <if test="tools != null">
+        Tools = #{tools,jdbcType=VARCHAR},
+      </if>
+      <if test="pubtime != null">
+        PubTime = #{pubtime,jdbcType=VARCHAR},
+      </if>
+      <if test="like != null">
+        Like = #{like,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        Content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        Comment = #{comment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where _id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.king.information.main.spider.weiboSpider.entry.WeiboMessage">
+    update weibomessage
+    set userId = #{userid,jdbcType=VARCHAR},
+      Url = #{url,jdbcType=VARCHAR},
+      Transfer = #{transfer,jdbcType=VARCHAR},
+      Tools = #{tools,jdbcType=VARCHAR},
+      PubTime = #{pubtime,jdbcType=VARCHAR},
+      Like = #{like,jdbcType=VARCHAR},
+      Content = #{content,jdbcType=VARCHAR},
+      Comment = #{comment,jdbcType=VARCHAR}
+    where _id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
